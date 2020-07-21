@@ -3,22 +3,45 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import history from '../../../services/history';
 import api from '../../../services/api';
 
-import { signInSuccess } from './actions';
+import { signInSuccess, signInFailure } from './actions';
 
 export function* signIn({ payload }) {
-  const { email, password } = payload;
+  try {
+    const { email, password } = payload;
 
-  const response = yield call(api.post, '/auth/login', {
-    email,
-    password,
-  });
-  console.log(response.data);
-  const { access_token } = response.data;
+    const response = yield call(api.post, '/auth/login', {
+      email,
+      password,
+    });
 
-  yield put(signInSuccess(access_token));
-  console.log(response.data);
-  history.push('dashboard');
-  console.log('ok');
+    const { access_token } = response.data;
+
+    api.defaults.headers.Authorization = `Bearer ${access_token}`;
+
+    yield put(signInSuccess(access_token));
+
+    history.push('dashboard');
+  } catch (err) {
+    yield put(signInFailure());
+  }
 }
 
-export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
+export function signOut() {
+  history.push('/');
+}
+
+export default all([
+  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+  takeLatest('@auth/SIGN_OUT', signOut),
+]);

@@ -30,7 +30,7 @@ export const Content = styled.div`
   grid-gap: 0 96px;
   padding: 0 2rem;
 
-  p {
+  span {
     font-size: 20px;
   }
 `;
@@ -51,6 +51,7 @@ export const Post = styled.div`
   }
 
   div {
+    background: #fff;
     height: 236px;
     max-width: 42vw;
     overflow-wrap: break-word;

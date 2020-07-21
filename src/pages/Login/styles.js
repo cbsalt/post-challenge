@@ -112,7 +112,6 @@ export const FormLogin = styled.div`
 `;
 
 export const EmailInput = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
   display: grid;

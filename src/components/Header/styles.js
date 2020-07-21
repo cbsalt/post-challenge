@@ -7,12 +7,13 @@ export const Container = styled.div`
   padding: 32px;
   font-size: 24px;
 
-  div {
+  nav {
     display: flex;
 
-    ul {
+    a {
       margin: 0 16px;
-      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
     }
   }
 
