@@ -28,7 +28,7 @@ Install dependencies
 npm install
 
 Run server
-Create a file .env.local and add your port and local host url, preferably different from PORT 3000
+Copy the .env.example file to .env and change its values, preferably different from PORT 3000
 npm run serve
 ```
 
