@@ -19,8 +19,8 @@ import {
 export default function Dashboard() {
   const [subjectSelected, setSubjectSelected] = useState([1]);
   const [subjects, setSubjects] = useState([]);
+  const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [textPost, setTextPost] = useState('');
 
   const created_at = new Date().toISOString();
 
@@ -43,11 +43,14 @@ export default function Dashboard() {
   const sendPost = async () => {
     try {
       await api.post('posts', {
-        title: textPost,
+        title,
         text,
         id_category: Number(subjectSelected),
         date: created_at,
       });
+
+      setTitle('');
+      setText('');
 
       toast.success('Postagem realizada com sucesso!');
     } catch (err) {
@@ -64,7 +67,7 @@ export default function Dashboard() {
             type="text"
             name="title"
             onChange={(event) => {
-              setTextPost(event.target.value);
+              setTitle(event.target.value);
             }}
             placeholder="Digite o título do seu post"
           />
