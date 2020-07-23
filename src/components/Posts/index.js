@@ -1,32 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { MdClose } from 'react-icons/md';
 import parse from 'html-react-parser';
 
-import api from '../../services/api';
-
 import { Container, GridList, Card } from './styles';
 
-export default function Post() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    async function loadPosts() {
-      const response = await api.get('posts');
-
-      const { data } = response;
-
-      setPosts(data);
-    }
-
-    loadPosts();
-  }, []);
-
-  async function handleDelete(id) {
-    await api.delete(`posts/${id}`);
-
-    setPosts(posts.filter((post) => post.id !== id));
-  }
-
+export default function Post({ posts, deletePost }) {
   return (
     <Container>
       <GridList>
@@ -34,9 +13,8 @@ export default function Post() {
           <Card key={post.id}>
             <header>
               <h3>Autor</h3>
-
-              <h3>Tema: {post.id_category}</h3>
-              <button type="button" onClick={() => handleDelete(post.id)}>
+              <h3>Tema: {post.category?.name}</h3>
+              <button type="button" onClick={() => deletePost(post.id)}>
                 <MdClose size={32} color="#f64c75" />
               </button>
             </header>
@@ -50,3 +28,17 @@ export default function Post() {
     </Container>
   );
 }
+
+Post.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      text: PropTypes.string,
+      category: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+    })
+  ).isRequired,
+  deletePost: PropTypes.func.isRequired,
+};
