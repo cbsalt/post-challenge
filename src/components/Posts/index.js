@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdClose } from 'react-icons/md';
+import parse from 'html-react-parser';
 
 import api from '../../services/api';
 
@@ -32,16 +33,17 @@ export default function Post() {
         {posts.map((post) => (
           <Card key={post.id}>
             <header>
-              <span>Autor</span>
-              <span>Assunto</span>
-              <button type="button" onClick={handleDelete}>
+              <h3>Autor</h3>
+
+              <h3>Tema: {post.id_category}</h3>
+              <button type="button" onClick={() => handleDelete(post.id)}>
                 <MdClose size={32} color="#f64c75" />
               </button>
             </header>
             <div>
               <h2>{post.title}</h2>
             </div>
-            <p>{post.text}</p>
+            <span>{parse(post.text)}</span>
           </Card>
         ))}
       </GridList>

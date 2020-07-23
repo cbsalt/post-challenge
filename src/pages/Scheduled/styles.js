@@ -7,6 +7,11 @@ export const Container = styled.div`
   grid-gap: 7rem;
   padding: 2rem;
 
+  @media (max-width: 900px) {
+    display: block;
+    justify-content: center;
+  }
+
   img {
     width: 500px;
     z-index: 0;
@@ -26,6 +31,10 @@ export const SearchInput = styled.div`
   align-items: center;
   max-height: 50vh;
 
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
+
   h2 {
     font-size: 2.9rem;
     text-transform: uppercase;
@@ -38,9 +47,10 @@ export const SearchInput = styled.div`
     padding: 0 40px;
     margin-top: 36px;
     height: 32px;
-    border: none;
     font-size: 1.2rem;
     font-weight: bold;
     color: #555;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
   }
 `;

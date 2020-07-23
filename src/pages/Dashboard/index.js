@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import parse from 'html-react-parser';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
@@ -40,14 +40,20 @@ export default function Dashboard() {
     setSubjectSelected(e.target.value);
   };
 
-  async function sendPost() {
-    await api.post('posts', {
-      title: textPost,
-      text,
-      id_category: Number(subjectSelected),
-      date: created_at,
-    });
-  }
+  const sendPost = async () => {
+    try {
+      await api.post('posts', {
+        title: textPost,
+        text,
+        id_category: Number(subjectSelected),
+        date: created_at,
+      });
+
+      toast.success('Postagem realizada com sucesso!');
+    } catch (err) {
+      toast.error('Erro ao realizar a postagem, tente novamente');
+    }
+  };
 
   return (
     <>

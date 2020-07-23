@@ -7,8 +7,20 @@ export const Container = styled.div`
   padding: 32px;
   font-size: 24px;
 
+  @media (max-width: 900px) {
+    justify-content: center;
+    display: grid;
+  }
+
   nav {
     display: flex;
+
+    @media (max-width: 900px) {
+      display: grid;
+      justify-items: center;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
 
     a {
       margin: 0 16px;
@@ -25,6 +37,10 @@ export const Container = styled.div`
     border-radius: 8px;
     border: none;
 
+    @media (max-width: 900px) {
+      justify-self: center;
+    }
+
     span {
       font-size: 18px;
       font-weight: bold;
@@ -38,5 +54,9 @@ export const Container = styled.div`
 export const Avatar = styled.div`
   img {
     width: 96px;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 `;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #fdfdfd;
+  padding-top: 12px;
 `;
 
 export const HeaderContent = styled.div`
@@ -9,6 +10,11 @@ export const HeaderContent = styled.div`
   padding: 0 2rem;
   max-width: 44vw;
   margin: 24px 0 16px;
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+    text-align-last: center;
+  }
 
   input {
     height: 32px;
@@ -26,9 +32,13 @@ export const HeaderContent = styled.div`
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 0 96px;
   padding: 0 2rem;
+
+  @media (max-width: 900px) {
+    display: block;
+  }
 
   span {
     font-size: 20px;
@@ -38,16 +48,29 @@ export const Content = styled.div`
 export const RichText = styled.div`
   max-width: 44vw;
 
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
+
   div {
     height: 240px;
   }
 `;
 
 export const Post = styled.div`
+  @media (max-width: 900px) {
+    margin-top: 16px;
+  }
+
   h2 {
     font-weight: bold;
     margin: 0 0 12px 24px;
     font-size: 22px;
+
+    @media (max-width: 900px) {
+      margin: 0 0 16px;
+      text-align: center;
+    }
   }
 
   div {
@@ -60,6 +83,10 @@ export const Post = styled.div`
     border: solid 1px #c9c9c9;
     border-radius: 4px;
     padding: 8px 8px 0;
+
+    @media (max-width: 900px) {
+      max-width: 100%;
+    }
   }
 `;
 

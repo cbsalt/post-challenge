@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 2rem;
 
   @media (max-width: 900px) {
-    display: flex;
+    display: block;
     justify-content: center;
   }
 
