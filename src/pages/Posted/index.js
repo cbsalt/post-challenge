@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
@@ -47,7 +49,25 @@ export default function Posted() {
   }, [search, categories]);
 
   async function handleDelete(id) {
-    await api.delete(`posts/${id}`);
+    const modal = withReactContent(Swal);
+
+    modal
+      .fire({
+        title: 'Você tem certeza que quer excluir?',
+        text: 'Você não poderá reverter isso!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#32be8f',
+        cancelButtonColor: '#f64c75',
+        confirmButtonText: 'Sim, exclua!',
+      })
+      .then((result) => {
+        if (result.value) {
+          api.delete(`posts/${id}`);
+
+          Swal.fire('Excluído!', 'Seu post foi deletado.', 'success');
+        }
+      });
 
     setPosts(posts.filter((post) => post.id !== id));
   }
