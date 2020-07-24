@@ -66,6 +66,7 @@ export default function Dashboard() {
           <input
             type="text"
             name="title"
+            value={title}
             onChange={(event) => {
               setTitle(event.target.value);
             }}
