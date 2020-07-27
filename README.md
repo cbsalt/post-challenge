@@ -10,6 +10,7 @@ _This project was developed with the following technologies:_
 * [Redux-Saga](https://redux-saga.js.org/)
 * [styled-components](https://styled-components.com/)
 * [Curseduca api](https://github.com/cbsalt/curseduca-frontend-react-test)
+* [Reactotron](https://infinite.red/reactotron)
 * [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) and [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)/[Prettier](https://prettier.io/)
 
 # :information_source: Getting Started
